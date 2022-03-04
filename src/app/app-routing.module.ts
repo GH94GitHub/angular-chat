@@ -1,11 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { HomeComponent } from './home/home.component';
+import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
 
 const routes: Routes = [
   {
-    path:'',
-    component: HomeComponent
+    path: '',
+    component: BaseLayoutComponent,
+    children: [
+      {
+        path:'',
+        component: CreateProfileComponent
+      },
+      {
+        path: 'create-profile',
+        component: CreateProfileComponent
+      },
+      {
+        path: 'home',
+        component: HomeComponent
+      }
+    ]
   },
   {
     path: '**',
