@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { HomeComponent } from './home/home.component';
+import { LandingComponent } from './landing/landing.component';
 import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
 
 const routes: Routes = [
@@ -11,7 +12,7 @@ const routes: Routes = [
     children: [
       {
         path:'',
-        component: CreateProfileComponent
+        component: LandingComponent
       },
       {
         path: 'create-profile',
