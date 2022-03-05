@@ -1,1 +1,25 @@
-<p>create-profile works!</p>
+<div class="main-content" fxLayoutAlign="center center">
+  <form fxLayout="column">
+    <mat-card fxFlex fxLayout="column">
+      <mat-card-title fxFlex fxLayoutAlign="center">What would you like to be called?</mat-card-title>
+      <mat-card-content fxFlex fxLayoutAlign="center center">
+        <!-- Text Box -->
+          <input
+            class="txtName"
+            type="text"
+            autocomplete="off"
+            [formControl]="name"
+            placeholder="Enter your name...">
+      </mat-card-content>
+      <mat-card-actions
+        fxFlex
+        fxLayoutAlign="space-around center"
+        fxLayout.lt-md="column"
+        fxLayoutGap.lt-md="5px"
+      >
+        <button type="button" mat-raised-button routerLink="back">Back</button>
+        <button type="submit" mat-raised-button routerLink="/home" [disabled]="!name.valid">Next</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>
