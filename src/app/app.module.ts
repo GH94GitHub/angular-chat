@@ -9,7 +9,7 @@ import { CreateProfileComponent } from './create-profile/create-profile.componen
 import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 // Material UI
@@ -35,8 +35,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatCardModule,
     MatSelectModule,
+    FlexLayoutModule,
     FormsModule,
-    FlexLayoutModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
