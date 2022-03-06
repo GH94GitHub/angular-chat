@@ -73,3 +73,34 @@ input {
     outline: none;
   }
 }
+
+.mat-select-panel {
+  border-radius: 15px !important;
+  max-height: 300px !important;
+
+  .mat-option {
+    height: fit-content !important;
+    line-height: normal !important;
+    padding: 8px !important;
+  }
+
+  footer {
+    height: 37px;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid rgb(128 128 128 / 40%);
+    padding: 4px;
+    text-align: right;
+    background-color: white;
+
+    button {
+      background-color: rgb(128 128 128 / 20%) !important;
+
+      &:hover {
+        background-color: rgb(128 128 128 / 40%) !important;
+      }
+    }
+  }
+}
