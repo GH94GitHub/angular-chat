@@ -1,0 +1,76 @@
+.component-content {
+  padding: 20px;
+}
+
+.instruction {
+
+  li {
+    font-size: 1.7rem;
+    line-height: 150%;
+    margin: 20px 0;
+  }
+}
+
+.chat {
+  margin: auto;
+  color: black;
+
+  .container {
+    margin-left: 10%;
+    font-size: 1.5rem;
+    overflow: hidden;
+    width: auto;
+    max-width: 600px;
+    background-color: var(--color-accent);
+
+    &, .chat-box {
+      border-radius: 15px;
+    }
+    .title {
+      background-color: var(--color-secondary);
+      font-family: 'Merriweather', serif;
+
+      mat-select {
+        font-family: 'Merriweather', serif !important;
+        width: 170px;
+      }
+    }
+
+    .chat-box {
+      height: 500px;
+      margin: 0 10px;
+      background-color: var(--color-secondary);
+    }
+
+    .actions {
+      padding: 0 10px 10px;
+
+      textarea {
+        resize: none;
+        border-radius: 15px;
+        border: none;
+        width: 75%;
+        padding-left: 10px;
+        background-color: var(--color-secondary);
+        font-size: 1.3rem;
+        font-family: 'Merriweather', serif;
+
+        &:focus {
+          outline: none;
+        }
+      }
+      button {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .chat {
+
+    .container {
+      margin-left: 0;
+    }
+  }
+}

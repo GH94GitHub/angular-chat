@@ -1,0 +1,42 @@
+<div class="component-content" fxLayout="row" fxLayout.lt-md="column">
+  <section class="instruction" fxFlex>
+    <h1>TRY IT OUT</h1>
+    <ul>
+      <li>Open a new window either with a different profile, or as a guest to try it out.</li>
+      <li>Keep in mind that guests can only talk in global chat.</li>
+    </ul>
+
+    <h1>Private Messaging</h1>
+    <ul>
+      <li>Click where it says "Global Chat to the right and at the top click "+ Chat".</li>
+      <li>Enter the name of the person you would like to communicate with.</li>
+    </ul>
+  </section>
+  <section class="chat" fxFlex>
+    <div class="container" fxLayout="column" fxLayoutGap="10px">
+      <!-- Title -->
+      <div class="title" fxLayoutAlign="space-around">
+        <div>
+          <mat-select [formControl]="chatType">
+            <mat-option value="">Global Chat</mat-option>
+            <footer>
+              <button mat-raised-button>+ Chat</button>
+            </footer>
+          </mat-select>
+        </div>
+        <span>Online 5</span>
+      </div>
+      <!-- Chat Box -->
+      <div class="chat-box">
+
+      </div>
+      <!-- Actions (message text, send button) -->
+      <div class="actions">
+        <form fxLayoutAlign="space-between">
+          <textarea (keydown.enter)="textOnEnter($any($event))" [formControl]="message" placeholder="Enter a message..."></textarea>
+          <button #sendButton mat-raised-button type="submit" (click)="sendMessage()">Send</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
