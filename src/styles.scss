@@ -1,8 +1,8 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use "variables.scss";
 @use '~@angular/material' as mat;
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Merriweather+Sans&display=swap');
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -44,4 +44,25 @@ html, body {
   height: 100%;
   color: white;
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: 'Merriweather', serif;
+  font-size: 100%;
+}
+h1 {
+  font-size: 5rem;
+}
+button {
+  border-radius: 25px;
+}
+input {
+  border-radius: 25px;
+
+  &::placeholder {
+    opacity: .4;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
