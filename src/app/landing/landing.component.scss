@@ -1,0 +1,27 @@
+.component-content {
+  width: 50%;
+  padding: 10px;
+  margin: auto;
+  text-align: center;
+}
+
+button {
+  font-size: 1.7rem;
+  height: 75px;
+  border-radius: 50px !important;
+  transition: transform .1s;
+
+
+  &:hover {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .component-content {
+    width: 100%;
+  }
+}
