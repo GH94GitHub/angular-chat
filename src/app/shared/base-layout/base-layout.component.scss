@@ -1,44 +1,53 @@
 $poly-offset: 25px;
+$poly-breakpoint: 35%; //left 0% -> right 100%
 $poly-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+.page {
+  height: 100%;
+}
 
 .polys {
   height: 100px;
-}
-.poly-left {
-  background-color: var(--color-secondary);
-  height: 100%;
-  width: calc(50% - #{$poly-offset});
-  position: relative;
-  box-shadow: $poly-box-shadow;
 
-  &::after {
-    content: '';
-    position: absolute;
+  .poly-left {
     background-color: var(--color-secondary);
-    width: calc(#{$poly-offset} * 2);
+    height: 100%;
+    width: calc(#{$poly-breakpoint} - #{$poly-offset});
+    position: relative;
+    box-shadow: $poly-box-shadow;
 
-    top: 0;
-    bottom: 0;
-    right: calc(#{$poly-offset} * -1);
+    &::after {
+      content: '';
+      position: absolute;
+      background-color: var(--color-secondary);
+      width: calc(#{$poly-offset} * 2);
 
-    -webkit-transform: skew(-25deg);
-    -moz-transform: skew(-25deg);
-    -ms-transform: skew(-25deg);
-    transform: skew(-25deg);
+      top: 0;
+      bottom: 0;
+      right: calc(#{$poly-offset} * -1);
+
+      -webkit-transform: skew(-25deg);
+      -moz-transform: skew(-25deg);
+      -ms-transform: skew(-25deg);
+      transform: skew(-25deg);
+    }
+  }
+
+  .poly-right {
+    background-color: var(--color-accent);
+    box-shadow: $poly-box-shadow;
+    height: 70%;
+    width: calc(
+      calc(100% - #{$poly-breakpoint}) + #{$poly-offset}
+      );
   }
 }
 
-.poly-right {
-  background-color: var(--color-accent);
-  box-shadow: $poly-box-shadow;
-  height: 50%;
-  width: calc(50% + #{$poly-offset});
-}
-
 footer {
-  position: absolute;
-  bottom: 10px;
-  right: 0;
-  padding-right: 20px;
+  width: 100vw;
+  box-sizing: border-box;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-align: right;
+  padding: 10px 20px;
   font-size: 25px;
 }

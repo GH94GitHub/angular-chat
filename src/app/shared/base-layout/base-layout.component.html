@@ -1,9 +1,13 @@
-<div class="polys" fxLayout="row">
-  <div class="poly-left"></div>
-  <div class="poly-right"></div>
+<div class="page" fxLayout="column">
+  <div class="polys" fxLayout="row">
+    <div class="poly-left"></div>
+    <div class="poly-right"></div>
+  </div>
+  <div fxFlex>
+    <router-outlet></router-outlet>
+  </div>
+  <footer>
+    Copyright &copy; {{ year }} George Henderson
+  </footer>
 </div>
-<router-outlet></router-outlet>
-<footer>
-  Copyright &copy; {{ year }} George Henderson
-</footer>
 
