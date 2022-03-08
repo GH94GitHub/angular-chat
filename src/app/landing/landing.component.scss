@@ -1,12 +1,19 @@
+@use '../../font';
+
 .component-content {
   width: 50%;
   padding: 10px;
   margin: auto;
   text-align: center;
+
+  .heading {
+    margin-top: 20%;
+    @include font.responsive(4vw, 2.5rem, 5rem, 30px);
+  }
 }
 
 button {
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   height: 75px;
   border-radius: 25px !important;
   transition: transform .1s;
@@ -25,3 +32,4 @@ button {
     width: 100%;
   }
 }
+
