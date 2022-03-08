@@ -4,6 +4,7 @@
   mat-card {
     border-radius: 25px;
     width: fit-content;
+    max-width: 90%;
     margin: auto;
     padding: 30px;
     background-color: var(--color-accent);
@@ -13,12 +14,12 @@
     }
     mat-card-title {
       color: white;
-      font-size: 2rem;
+      font-size: 1.875rem;
       text-align: center;
     }
 
     input {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
     }
 
     button {
