@@ -1,0 +1,35 @@
+$base-font-size: 16px;
+
+@mixin responsive($scale, $min, $max: false, $fallback: false) {
+  $scale-unitless: $scale / ($scale - $scale + 1);
+  $dimension: if(unit($scale) == 'vw', 'width', 'height');
+  $min-unit: unit($min);
+  $min-breakpoint: $min / $scale-unitless * 100;
+
+  @if $min-unit == 'rem' {
+    $min-breakpoint: $min / 1rem * $base-font-size / $scale-unitless * 100;
+  }
+
+  @media (max-#{$dimension}: #{$min-breakpoint}) {
+    font-size: $min;
+  }
+
+  @if $max {
+    $max-breakpoint: $max / $scale-unitless * 100;
+    $max-unit: unit($max);
+
+    @if $max-unit == 'rem' {
+      $max-breakpoint: $max / 1rem * $base-font-size / $scale-unitless * 100;
+    }
+
+    @media (min-#{$dimension}: $max-breakpoint) {
+      font-size: $max;
+    }
+  }
+
+  @if $fallback {
+    font-size: $fallback;
+  }
+
+  font-size: $scale;
+}
