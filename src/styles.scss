@@ -2,6 +2,7 @@
 // For more information: https://material.angular.io/guide/theming
 @use "variables.scss";
 @use '~@angular/material' as mat;
+@use 'font';
 @import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Merriweather+Sans&display=swap');
 // Plus imports for other components in your app.
 
@@ -41,7 +42,6 @@ html {
 }
 
 html, body {
-  height: 100%;
   color: white;
 }
 body {
@@ -62,7 +62,7 @@ input {
   border-radius: 15px;
   font-size: 1.7rem;
   border: none;
-  padding-left: 25px;
+  padding: 2px 15px;
   font-family: 'Merriweather', serif !important;
 
   &::placeholder {
@@ -74,6 +74,7 @@ input {
   }
 }
 
+/* Overlay elements (placed at root DOM) */
 .mat-select-panel {
   border-radius: 15px !important;
   max-height: 300px !important;
@@ -100,6 +101,35 @@ input {
 
       &:hover {
         background-color: rgb(128 128 128 / 40%) !important;
+      }
+    }
+  }
+}
+
+.mat-dialog-container {
+  background-color: var(--color-accent);
+
+  mat-dialog-content {
+    height: 100%;
+  }
+
+  #new-chat-dialog {
+    text-align: center;
+
+    h1 {
+      color: white;
+      @include font.responsive(2vw, 1.5625rem, 1.875rem, 30px);
+    }
+
+    input {
+      font-size: 1.25rem;
+    }
+
+    .actions {
+      padding: 10px 0;
+
+      button {
+        font-size: 1.15rem;
       }
     }
   }

@@ -13,10 +13,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 // Material UI
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
+import { NewChatDialogComponent } from './shared/dialogs/new-chat-dialog/new-chat-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { MatSelectModule } from '@angular/material/select';
     LandingComponent,
     CreateProfileComponent,
     BaseLayoutComponent,
+    NewChatDialogComponent,
 
   ],
   imports: [
@@ -37,7 +40,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
