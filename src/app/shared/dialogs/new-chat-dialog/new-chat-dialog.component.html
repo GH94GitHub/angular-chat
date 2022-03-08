@@ -1,0 +1,11 @@
+<mat-dialog-content id="new-chat-dialog" fxLayout="column" fxLayoutAlign="space-between">
+
+  <h1 class="prompt">Enter the person's name</h1>
+
+  <input type="text" [formControl]="name" placeholder="Enter name...">
+
+  <div class="actions" fxLayoutAlign="space-between">
+    <button mat-raised-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button >Chat</button>
+  </div>
+</mat-dialog-content>
