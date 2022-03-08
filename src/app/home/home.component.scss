@@ -8,6 +8,7 @@
 
   h1 {
     @include font.responsive(5vw, 2.8125rem, 5rem, 50px);
+    margin-bottom: 0;
   }
 
   li {
