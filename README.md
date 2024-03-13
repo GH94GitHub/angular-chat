@@ -1,6 +1,6 @@
 # ChatApp
 
-Frontend application that utilizes responsive design including responsive font styles with SCSS. This app currently doesn't interact with a backend. 
+Frontend application that utilizes responsive design including responsive font styles with SCSS.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.1.
 
