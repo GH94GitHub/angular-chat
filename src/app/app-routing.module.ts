@@ -12,12 +12,16 @@ const routes: Routes = [
     children: [
       {
         path:'',
-        component: LandingComponent
+        component: HomeComponent
       },
-      {
-        path: 'create-profile',
-        component: CreateProfileComponent
-      },
+      // {
+      //   path:'',
+      //   component: LandingComponent
+      // },
+      // {
+      //   path: 'create-profile',
+      //   component: CreateProfileComponent
+      // },
       {
         path: 'home',
         component: HomeComponent
