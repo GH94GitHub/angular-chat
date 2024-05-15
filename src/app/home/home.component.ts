@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChatService } from '../shared/services/chat.service';
 
 @Component({
   selector: 'app-home',
@@ -8,15 +9,17 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   onlineUsers: number = 0;
-  userMessage?: string;
+  userMessage: string = "";
 
-  constructor() { }
+  constructor(private chat: ChatService) { }
 
   ngOnInit(): void {
+
   }
 
   sendMessage(): void {
-    console.log('Message Sent: ', this.userMessage);
+
+    this.chat.publishMessage("", this.userMessage);
     this.userMessage = "";
   }
 }
