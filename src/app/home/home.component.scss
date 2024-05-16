@@ -34,6 +34,26 @@
     &, .chat-box {
       border-radius: 15px;
     }
+    .chat-box {
+      $spacing: 5px;
+      overflow-y: auto;
+
+      .message {
+        border: 1px solid black;
+        width: fit-content;
+        margin-top: $spacing;
+        padding: $spacing;
+        border-radius: $spacing * 2;
+      }
+      .you {
+        margin-left: $spacing;
+      }
+      .other {
+        margin-left: auto;
+        // float: right;
+        margin-right: $spacing;
+      }
+    }
     .title {
       background-color: var(--color-secondary);
       font-family: 'Merriweather', serif;

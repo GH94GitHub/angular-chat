@@ -40,7 +40,9 @@ export class ChatService implements OnDestroy {
     }
     return this.chats[channel];
   }
-
+  public getUUID(): string {
+    return this.pubnub.getUUID();
+  }
   /**
   * @returns {Function(status: any, response: any)}
   */
@@ -72,9 +74,9 @@ export class ChatService implements OnDestroy {
       const channel: string = m.channel;
       const userId: string = m.publisher;
       const message: string = m.message.message;
+      const owner = userId === this.getUUID() ? "you": "other";
 
-      this.chats[channel].getChannelSubject().next({userId, message});
-
+      this.chats[channel].getChannelSubject().next({owner, userId, message});
     }
     // Add listeners
     this.listen(ListenerType.MESSAGE, messageListener); // Listens to all events console logging them.
@@ -233,7 +235,7 @@ export class ChatService implements OnDestroy {
 export class Chat {
   private readonly channelName; // Channel Name
   private chatSubject: ChatSubject; // Behavior Subject for chat
-  private channelMessages: Array<UserMessage> = [];
+  public channelMessages: Array<UserMessage> = [];
   private service: ChatService;
 
   constructor(channelName: string, chatSubject: ChatSubject, service: ChatService) {
@@ -244,9 +246,9 @@ export class Chat {
   }
 
   private listen(chatSubject: ChatSubject): void {
-    chatSubject.subscribe(({userId, message}) => {
+    chatSubject.subscribe(({owner, userId, message}) => {
       if(userId !== "" && message !== "") {
-        this.channelMessages.push({userId, message});
+        this.channelMessages.push({owner, userId, message});
       }
     });
   }

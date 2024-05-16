@@ -16,7 +16,15 @@
       </div>
       <!-- Chat Box -->
       <div class="chat-box">
+        <div *ngFor="let o of messages"
+          class="message"
+          [ngClass]="{
+            'you': o.owner === 'you',
+            'other': o.owner === 'other'
+            }">
 
+          {{ o.message }}
+        </div>
       </div>
       <!-- Actions (message text, send button) -->
       <div class="actions">
