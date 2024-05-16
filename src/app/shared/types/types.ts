@@ -1,8 +1,8 @@
-export enum ListenerType {
-  MESSAGE = 6,
-  PRESENCE = 1,
-  SIGNAL = 2,
-  OBJECTS = 3,
-  MESSAGE_ACTION = 4,
-  FILE = 5
-}
+import { BehaviorSubject } from "rxjs";
+
+// export type UserMessage = [string, string]; // The tuple that is emitted is [userId, message]
+export type UserMessage = {
+  userId: string,
+  message: string,
+};
+export type ChatBehaviorSubject = BehaviorSubject<UserMessage>;
