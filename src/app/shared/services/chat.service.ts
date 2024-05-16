@@ -2,12 +2,9 @@ import { Injectable, OnDestroy} from '@angular/core';
 // @ts-ignore
 import * as PubNub from 'pubnub';
 import { ListenerType } from '../types/ListenerType';
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { GlobalChannels } from '../types/GlobalChannels';
-import { ChatBehaviorSubject } from '../types/types';
-
-
-
+import { ChatSubject, UserMessage } from '../types/types';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +12,7 @@ import { ChatBehaviorSubject } from '../types/types';
 export class ChatService implements OnDestroy {
   public readonly defaultChannel: string = GlobalChannels.GLOBAL_CHAT;
   private readonly pubnub: any;
-  private chats: {[key: string]: ChatBehaviorSubject} = {};
+  private chats: { [key: string]: Chat } = {};
 
   constructor() {
     this.pubnub = new PubNub({
@@ -26,16 +23,20 @@ export class ChatService implements OnDestroy {
     console.log("Pubnub Object Methods:", this.pubnub);
     this.init();
   }
-
-  public subscribeTo(channel: string): ChatBehaviorSubject {
+  public subscribeToDefaultChannel(): Chat {
+    return this.subscribeTo(this.defaultChannel);
+  }
+  public subscribeTo(channel: string, withPresence: boolean = true): Chat {
     const subscribedChannels = this.pubnub.getSubscribedChannels();
     const isAlreadySubscribed = subscribedChannels.includes(channel);
     if(!isAlreadySubscribed){
       this.pubnub.subscribe({
         channels: [channel],
-        withPresence: true
+        withPresence: withPresence
       });
-      this.chats[channel] = new BehaviorSubject({userId: "", message: ""});
+
+      const subject: ChatSubject = new Subject();
+      this.chats[channel] = (new Chat(channel, subject, this));
     }
     return this.chats[channel];
   }
@@ -57,10 +58,6 @@ export class ChatService implements OnDestroy {
     }
       return await this.pubnub.publish(publishPayload);
   }
-
-  public subscribeToDefaultChannel(): ChatBehaviorSubject {
-    return this.subscribeTo(this.defaultChannel);
-  }
   public unsubscribe(channel: string): void {
     const isSubscribed = this.pubnub.getSubscribedChannels().includes(channel);
     if(isSubscribed) {
@@ -76,7 +73,7 @@ export class ChatService implements OnDestroy {
       const userId: string = m.publisher;
       const message: string = m.message.message;
 
-      this.chats[channel].next({userId, message});
+      this.chats[channel].getChannelSubject().next({userId, message});
 
     }
     // Add listeners
@@ -233,15 +230,36 @@ export class ChatService implements OnDestroy {
   }
 }
 
-// class Chat {
-//   // Channel Name
-//   private readonly channelName;
-//   private chatSubject: ChatBehaviorSubject;
-//   // Behavior Subject for chat
+export class Chat {
+  private readonly channelName; // Channel Name
+  private chatSubject: ChatSubject; // Behavior Subject for chat
+  private channelMessages: Array<UserMessage> = [];
+  private service: ChatService;
 
-//   constructor(channelName: string, chatSubject: ChatBehaviorSubject) {
-//     this.channelName = channelName;
-//     this.chatSubject = chatSubject;
-//     this.chatSubject
-//   }
-// }
+  constructor(channelName: string, chatSubject: ChatSubject, service: ChatService) {
+    this.channelName = channelName;
+    this.chatSubject = chatSubject;
+    this.listen(chatSubject);
+    this.service = service;
+  }
+
+  private listen(chatSubject: ChatSubject): void {
+    chatSubject.subscribe(({userId, message}) => {
+      if(userId !== "" && message !== "") {
+        this.channelMessages.push({userId, message});
+      }
+    });
+  }
+  public getChannelSubject(): ChatSubject {
+    return this.chatSubject;
+  }
+  public getChannelName(): string {
+    return this.channelName;
+  }
+  public getChannelMessages(): Array<UserMessage> {
+    return this.channelMessages;
+  }
+  public sendMessage(message: string, title: string = ""): void {
+    this.service.sendMessage(title, message, this.channelName);
+  }
+}

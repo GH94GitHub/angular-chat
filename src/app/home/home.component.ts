@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChatService } from '../shared/services/chat.service';
-import { UserMessage } from '../shared/types/types';
+import { Chat, ChatService } from '../shared/services/chat.service';
 
 @Component({
   selector: 'app-home',
@@ -11,24 +10,22 @@ export class HomeComponent implements OnInit {
 
   onlineUsers: number = 0;
   userMessage: string = "";
-  defaultChannelMessages: Array<UserMessage> = [];
+  defaultChat!: Chat; // Initialized in ngOnInit
 
   constructor(private chatService: ChatService) { }
 
   ngOnInit(): void {
-    this.chatService.subscribeToDefaultChannel().subscribe(({userId, message}) => {
-      console.log("~~ Inside Home component ~~");
-      if(userId !== "" && message !== "") {
-        console.log(userId);
-        console.log(message);
-        this.defaultChannelMessages.push({userId, message});
-      }
-      console.log("defaultChannelMessages", this.defaultChannelMessages);
+    this.defaultChat = this.chatService.subscribeToDefaultChannel();
+
+    this.defaultChat.getChannelSubject().subscribe(({userId, message}) => {
+      console.log("~~ In Home Component ~~");
+      console.log("userId", userId);
+      console.log("message", message);
     });
   }
 
   sendMessage(): void {
-    this.chatService.sendMessage("", this.userMessage);
+    this.defaultChat.sendMessage(this.userMessage);
     this.userMessage = "";
   }
 }
