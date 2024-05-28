@@ -16,8 +16,8 @@ export class ChatService implements OnDestroy {
 
   constructor() {
     this.pubnub = new PubNub({
-      publishKey: "pub-c-517c8188-d1f5-4866-8fc0-c24136b3a735",
-      subscribeKey: "sub-c-00990dee-ce15-488d-935e-70a29ef3eddf",
+      publishKey: "pub-c-d746a89c-df7a-4c7a-98a5-a4590ed2b43f",
+      subscribeKey: "sub-c-404f7ce1-63a5-4c9d-8c77-beea3f770b2a",
       userId: this.generateUUID()
     });
     console.log("Pubnub Object Methods:", this.pubnub);
@@ -70,19 +70,19 @@ export class ChatService implements OnDestroy {
   }
   private init(): void {
 
-    const messageListener = (m: any): void => {
-      const channel: string = m.channel;
-      const userId: string = m.publisher;
-      const message: string = m.message.message;
-      const owner = userId === this.getUUID() ? "you": "other";
+      const messageListener = (m: any): void => {
+        const channel: string = m.channel;
+        const userId: string = m.publisher;
+        const message: string = m.message.message;
+        const owner = userId === this.getUUID() ? "you": "other";
 
-      this.chats[channel].getChannelSubject().next({owner, userId, message});
-    }
-    // Add listeners
-    this.listen(ListenerType.MESSAGE, messageListener); // Listens to all events console logging them.
+        this.chats[channel].getChannelSubject().next({owner, userId, message});
+      }
+      // Add listeners
+      this.listen(ListenerType.MESSAGE, messageListener); // Listens to all events console logging them.
 
-    // Automatically Subscribe to the default global channel
-    this.subscribeToDefaultChannel();
+      // Automatically Subscribe to the default global channel
+      this.subscribeToDefaultChannel();
   }
   /**
    * Generic listeners
