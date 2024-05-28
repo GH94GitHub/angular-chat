@@ -20,7 +20,7 @@ export class ChatService implements OnDestroy {
       subscribeKey: "sub-c-404f7ce1-63a5-4c9d-8c77-beea3f770b2a",
       userId: this.generateUUID()
     });
-    console.log("Pubnub Object Methods:", this.pubnub);
+    // console.log("Pubnub Object Methods:", this.pubnub);
     this.init();
   }
   public subscribeToDefaultChannel(): Chat {
